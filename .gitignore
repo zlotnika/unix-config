@@ -1,0 +1,18 @@
+# ignore all directories and hidden files
+*/
+.*
+
+# but not these specifically
+!.bash_profile
+!.bashrc
+!.bashrc.d
+!.emacs.d/init.el
+!.gitignore
+!.inputrc
+!.jshintrc
+!.pryrc
+!.rubocop.yml
+!scripts
+
+.gitconfig
+.bashrc.d/homebrew-github-api-token.sh
