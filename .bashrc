@@ -18,7 +18,20 @@ alias allTheThings="brew update && brew upgrade --all && brew cleanup && brew ca
 alias ejectdisk4="diskutil eject /dev/disk4"
 alias replace="~/scripts/replace.sh"
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Input && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
+alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 alias soundPlantronics="SwitchAudioSource -t input -s Plantronics\ Savi\ 7xx && SwitchAudioSource -s Plantronics\ Savi\ 7xx && osascript -e 'set Volume 0.625'"
+# spelling
+alias gerp="grep"
+
+#### functions ####
+# Create gif screencast for Prompt
+function mov_to_gif() {
+    ffmpeg -i $1 -vf scale=800:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > ~/Downloads/out.gif
+}
+
+function movToGif(){
+    ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - ~/Downloads/out.gif
+}
 
 #### path things and shims ####
 # rbenv
@@ -40,3 +53,5 @@ source ~/.bashrc.d/homebrew-github-api-token.sh
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
+
+source /usr/local/bin/hubflow-shortcuts
