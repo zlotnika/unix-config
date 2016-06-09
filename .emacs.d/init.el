@@ -1,6 +1,16 @@
 ;;; summary --- init
 ;;; Commentary:
-;; melpa, flycheck, term, tabs, backups
+;; Install via Melpa:
+;; auto-complete
+;; flycheck
+;; js2-mode
+;; magit
+;; markdown-mode
+;; python-mode
+;; rspec-mode
+;; ruby-end
+;; stylus-mode
+;; web-mode
 
 ;;; Code:
 ;;;;;;;;;;;;;
@@ -121,9 +131,6 @@
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . javascript-mode))
-;; use jshint
-;;(add-hook 'js-mode-hook
-;;          (lambda () (flycheck-mode t)))
 
 ;; js2 ;;
 ;; https://yoo2080.wordpress.com/2012/03/15/js2-mode-setup-recommendation/
