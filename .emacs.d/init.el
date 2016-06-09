@@ -1,3 +1,8 @@
+;;; summary --- init
+;;; Commentary:
+;; melpa, flycheck, term, tabs, backups
+
+;;; Code:
 ;;;;;;;;;;;;;
 ;; globals ;;
 ;;;;;;;;;;;;;

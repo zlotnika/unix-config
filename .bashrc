@@ -17,9 +17,8 @@ alias ls="ls -G"
 alias allTheThings="brew update && brew upgrade --all && brew cleanup && brew cask update && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 alias replace="~/scripts/replace.sh"
-alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Input && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
+alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
-alias soundPlantronics="SwitchAudioSource -t input -s Plantronics\ Savi\ 7xx && SwitchAudioSource -s Plantronics\ Savi\ 7xx && osascript -e 'set Volume 0.625'"
 # spelling
 alias gerp="grep"
 
