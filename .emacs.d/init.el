@@ -4,6 +4,7 @@
 ;; auto-complete
 ;; flycheck
 ;; js2-mode
+;; jscs
 ;; magit
 ;; markdown-mode
 ;; python-mode
@@ -23,11 +24,6 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
-
-;; neotree
-;;(add-to-list 'load-path "/some/path/neotree")
-;;(require 'neotree)
-;;  (global-set-key [f8] 'neotree-toggle)
 
 ;; flycheck
 (require 'flycheck)
@@ -130,7 +126,10 @@
 ;; javascript ;;
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
+(setq js2-basic-offset 2)
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . javascript-mode))
+(add-hook 'js2-mode-hook #'jscs-indent-apply)
+(add-hook 'js2-mode-hook #'jscs-fix-run-before-save)
 
 ;; js2 ;;
 ;; https://yoo2080.wordpress.com/2012/03/15/js2-mode-setup-recommendation/
@@ -162,21 +161,21 @@
 ;;           (add-hook 'js2-post-parse-callbacks 'my-add-jslint-declarations)))
 
 ;; Flycheck JSCS
-(flycheck-def-config-file-var flycheck-jscs javascript-jscs ".jscsrc"
-  :safe #'stringp)
-(flycheck-define-checker javascript-jscs
-  "A JavaScript code style checker.
-See URL `https://github.com/mdevils/node-jscs'."
-  :command ("jscs" "--reporter" "checkstyle"
-            (config-file "--config" flycheck-jscs)
-            source)
-  :error-parser flycheck-parse-checkstyle
-  :modes (js-mode js2-mode js3-mode)
-  :next-checkers (javascript-jshint))
-(defun jscs-enable () (interactive)
-       (add-to-list 'flycheck-checkers 'javascript-jscs))
-(defun jscs-disable () (interactive)
-       (setq flycheck-checkers (remove 'javascript-jscs flycheck-checkers)))
+;; (flycheck-def-config-file-var flycheck-jscs javascript-jscs ".jscsrc"
+;;   :safe #'stringp)
+;; (flycheck-define-checker javascript-jscs
+;;   "A JavaScript code style checker.
+;; See URL `https://github.com/mdevils/node-jscs'."
+;;   :command ("jscs" "--reporter" "checkstyle"
+;;             (config-file "--config" flycheck-jscs)
+;;             source)
+;;   :error-parser flycheck-parse-checkstyle
+;;   :modes (js-mode js2-mode js3-mode)
+;;   :next-checkers (javascript-jshint))
+;; (defun jscs-enable () (interactive)
+;;        (add-to-list 'flycheck-checkers 'javascript-jscs))
+;; (defun jscs-disable () (interactive)
+;;        (setq flycheck-checkers (remove 'javascript-jscs flycheck-checkers)))
 
 (provide 'init)
 ;;; init.el ends here
