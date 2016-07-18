@@ -5,6 +5,7 @@
 ;; flycheck
 ;; js2-mode
 ;; jscs
+;; json-mode
 ;; magit
 ;; markdown-mode
 ;; python-mode
