@@ -10,7 +10,6 @@
 ;; markdown-mode
 ;; python-mode
 ;; rspec-mode
-;; ruby-end
 ;; stylus-mode
 ;; web-mode
 
