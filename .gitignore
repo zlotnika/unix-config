@@ -16,3 +16,4 @@
 
 .gitconfig
 .bashrc.d/homebrew-github-api-token.sh
+.bashrc.d/rs-bashrc.sh

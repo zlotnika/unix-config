@@ -99,6 +99,9 @@
 ;; conf ;;
 (add-to-list 'auto-mode-alist '("\\Gemfile.lock\\'" . conf-mode))
 
+;; apache ;;
+(add-to-list 'auto-mode-alist '("\\.vhost\\'" . apache-mode))
+
 ;; json ;;
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
