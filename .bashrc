@@ -17,10 +17,13 @@ alias ls="ls -G"
 alias allTheThings="brew update && brew upgrade --all && brew cleanup && brew cask update && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 alias replace="~/scripts/replace.sh"
+# sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 # spelling
-alias gerp="grep"
+alias gerp="grep -ir --exclude=\*.{log,cache}"
+# http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
+alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 
 #### functions ####
 # Create gif screencast for Prompt
