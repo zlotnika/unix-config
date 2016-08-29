@@ -17,3 +17,6 @@ find $directory_name -type f -exec sed -i "" "s#$replace#$with#g" {} \;
 # ~/projects/scripts/replace.sh "div{'ng-include' => \"'\" + asset_path('templates/nav/_breadcrumbs.html') + \"'\"}" 'breadcrumbs' app/assets/angular/templates/
 
 # ~/scripts/replace.sh 'toggled=\([^ ]*\)' 'toggled=(readonly "\1")' app/templates/
+
+# replace ' \([a-z_A-Z0-9/]*\#[a-z_A-Z0-9/]*\) \([a-z_/0-9]* \)*' '\
+' thing5.txt
