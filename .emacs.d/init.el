@@ -96,6 +96,9 @@
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (setq compilation-scroll-output t)
 
+;; rspec ;;
+(setq rspec-use-vagrant-when-possible t)
+
 ;; conf ;;
 (add-to-list 'auto-mode-alist '("\\Gemfile.lock\\'" . conf-mode))
 
