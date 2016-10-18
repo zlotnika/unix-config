@@ -106,6 +106,9 @@
 ;; apache ;;
 (add-to-list 'auto-mode-alist '("\\.vhost\\'" . apache-mode))
 
+;; yml ;;
+(add-to-list 'auto-mode-alist '("\\.yml.example\\'" . yaml-mode))
+
 ;; json ;;
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
