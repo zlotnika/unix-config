@@ -16,7 +16,6 @@ alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
 alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
-alias replace="~/scripts/replace.sh"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
@@ -47,6 +46,8 @@ fi
 # node
 # https://gist.github.com/DanHerbert/9520689
 export PATH="$HOME/.node/bin:$PATH"
+# some of my special scripts
+export PATH=$HOME/scripts/bin:$PATH
 
 export PATH
 

@@ -13,6 +13,7 @@
 !.pryrc
 !.rubocop.yml
 !scripts
+!scripts/bin
 
 .gitconfig
 .bashrc.d/homebrew-github-api-token.sh
