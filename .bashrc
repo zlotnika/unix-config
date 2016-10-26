@@ -14,7 +14,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && brew-cask-outdated && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -32,6 +32,10 @@ function mov_to_gif() {
 
 function movToGif(){
     ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - ~/Downloads/out.gif
+}
+
+function brew-cask-upgrade(){
+    brew cask uninstall --force $1 && brew cask install $1
 }
 
 #### path things and shims ####
