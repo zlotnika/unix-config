@@ -14,7 +14,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask update && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 alias replace="~/scripts/replace.sh"
 # sound
