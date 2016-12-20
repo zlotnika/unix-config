@@ -38,7 +38,14 @@ function brew-cask-upgrade(){
     brew cask uninstall --force $1 && brew cask install $1
 }
 
+function re-add-ssh(){
+    ssh-add -k ~/.ssh/id_rsa
+    ssh-add -K ~/.ssh/private_key.pem > /dev/null 2>&1
+}
+
 #### path things and shims ####
+# get this ssh key running
+#eval "$(ssh-agent -s)"
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # make brew take precedence
