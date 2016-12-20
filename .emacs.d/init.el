@@ -119,7 +119,7 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 
 ;; markdown ;;
-(add-hook 'markdown-mode-hook #'flyspell-mode)
+;;(add-hook 'markdown-mode-hook #'flyspell-mode)
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
