@@ -113,6 +113,7 @@
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.ember-cli\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;; css ;;
 (setq css-indent-offset 2)
