@@ -41,6 +41,7 @@ function brew-cask-upgrade(){
 function re-add-ssh(){
     ssh-add -k ~/.ssh/id_rsa
     ssh-add -K ~/.ssh/private_key.pem > /dev/null 2>&1
+    ssh-add -A ~/.ssh/id_rsa
 }
 
 #### path things and shims ####
