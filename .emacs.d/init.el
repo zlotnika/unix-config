@@ -88,6 +88,10 @@
 ;; Modes ;;
 ;;;;;;;;;;;
 
+;; shell ;;
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
+
 ;; ruby ;;
 (setq ruby-deep-indent-paren nil)
 (setq ruby-deep-indent-paren-style nil)
