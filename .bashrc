@@ -56,8 +56,7 @@ if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 # node
-# https://gist.github.com/DanHerbert/9520689
-export PATH="$HOME/.node/bin:$PATH"
+export PATH="$PATH:`yarn global bin`"
 # some of my special scripts
 export PATH=$HOME/scripts/bin:$PATH
 

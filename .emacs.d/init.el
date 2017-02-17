@@ -89,8 +89,8 @@
 ;;;;;;;;;;;
 
 ;; shell ;;
-(setq sh-basic-offset 2)
-(setq sh-indentation 2)
+(setq-default sh-basic-offset 2)
+(setq-default sh-indentation 2)
 
 ;; ruby ;;
 (setq ruby-deep-indent-paren nil)
