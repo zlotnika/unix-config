@@ -14,7 +14,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew unlink node && brew link --overwrite node && brew-cask-outdated && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && npm update -g && brew-cask-outdated && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -27,21 +27,21 @@ alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmai
 #### functions ####
 # Create gif screencast for Prompt
 function mov_to_gif() {
-    ffmpeg -i $1 -vf scale=800:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > ~/Downloads/out.gif
+  ffmpeg -i $1 -vf scale=800:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > ~/Downloads/out.gif
 }
 
 function movToGif(){
-    ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - ~/Downloads/out.gif
+  ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - ~/Downloads/out.gif
 }
 
 function brew-cask-upgrade(){
-    brew cask uninstall --force $1 && brew cask install $1
+  brew cask uninstall --force $1 && brew cask install $1
 }
 
 function re-add-ssh(){
-    ssh-add -k ~/.ssh/id_rsa
-    ssh-add -K ~/.ssh/private_key.pem > /dev/null 2>&1
-    ssh-add -A ~/.ssh/id_rsa
+  ssh-add -k ~/.ssh/id_rsa
+  ssh-add -K ~/.ssh/private_key.pem > /dev/null 2>&1
+  ssh-add -A ~/.ssh/id_rsa
 }
 
 #### path things and shims ####
@@ -53,10 +53,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 PATH=/usr/local/bin:$PATH
 # git autocompletion
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 # node
-export PATH="$PATH:`yarn global bin`"
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+#export PATH="$PATH:`yarn global bin`"
 # some of my special scripts
 export PATH=$HOME/scripts/bin:$PATH
 
