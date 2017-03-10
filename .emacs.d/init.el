@@ -127,6 +127,7 @@
 ;;(add-hook 'markdown-mode-hook #'flyspell-mode)
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mkd\\'" . markdown-mode))
 
 ;; handlebars ;;
 (require 'web-mode)
