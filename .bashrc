@@ -72,3 +72,6 @@ source ~/.bashrc.d/homebrew-github-api-token.sh
 source /usr/local/bin/hubflow-shortcuts
 
 source ~/.bashrc.d/rs-bashrc.sh
+
+# docker
+eval $(dinghy env)
