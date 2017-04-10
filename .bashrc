@@ -74,4 +74,4 @@ source /usr/local/bin/hubflow-shortcuts
 source ~/.bashrc.d/rs-bashrc.sh
 
 # docker
-eval $(dinghy env)
+if which dinghy > /dev/null; then eval $(dinghy env); fi
