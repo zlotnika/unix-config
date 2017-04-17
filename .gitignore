@@ -9,8 +9,10 @@
 !.emacs.d/init.el
 !.gitignore
 !.inputrc
-!.jshintrc
 !.pryrc
+!.jshintrc
+!.jscsrc
+!.eslintrc.js
 !.rubocop.yml
 !scripts
 !scripts/bin

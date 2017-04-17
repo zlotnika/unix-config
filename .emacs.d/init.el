@@ -150,6 +150,8 @@
 (add-hook 'js2-mode-hook #'jscs-fix-run-before-save)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js2-mode))
+(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
+(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 (provide 'init)
 ;;; init.el ends here
@@ -163,7 +165,7 @@
     ("19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default)))
  '(package-selected-packages
    (quote
-    (git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs js2-mode gitconfig-mode flycheck auto-complete apache-mode))))
+    (eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs js2-mode gitconfig-mode flycheck auto-complete apache-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
