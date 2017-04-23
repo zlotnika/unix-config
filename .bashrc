@@ -44,22 +44,33 @@ function re-add-ssh(){
   ssh-add -A ~/.ssh/id_rsa
 }
 
-#### path things and shims ####
+#### shims ####
 # get this ssh key running
 #eval "$(ssh-agent -s)"
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# make brew take precedence
-PATH=/usr/local/bin:$PATH
+
 # git autocompletion
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# docker
+if which dinghy > /dev/null; then eval $(dinghy env); fi
+
+#### path ####
+# make brew take precedence
+PATH=/usr/local/bin:$PATH
+
 # node
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 #export PATH="$PATH:`yarn global bin`"
 # some of my special scripts
 export PATH=$HOME/scripts/bin:$PATH
+
+# local wins
+PATH=./bin:$PATH
 
 export PATH
 
@@ -72,6 +83,3 @@ source ~/.bashrc.d/homebrew-github-api-token.sh
 source /usr/local/bin/hubflow-shortcuts
 
 source ~/.bashrc.d/rs-bashrc.sh
-
-# docker
-if which dinghy > /dev/null; then eval $(dinghy env); fi
