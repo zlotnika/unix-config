@@ -122,7 +122,8 @@
 
 ;; css ;;
 (setq css-indent-offset 2)
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
+(add-to-list 'auto-mode-alist '("\\.sass\\'" . sass-mode))
 
 ;; markdown ;;
 ;;(add-hook 'markdown-mode-hook #'flyspell-mode)
