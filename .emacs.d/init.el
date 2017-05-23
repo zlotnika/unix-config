@@ -145,14 +145,11 @@
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
 (setq js2-basic-offset 2)
-(add-hook 'js-mode-hook #'jscs-indent-apply)
 (add-hook 'js2-mode-hook #'jscs-indent-apply)
-(add-hook 'js-mode-hook #'jscs-fix-run-before-save)
 (add-hook 'js2-mode-hook #'jscs-fix-run-before-save)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js2-mode))
-(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
-(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
+;;(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 (provide 'init)
 ;;; init.el ends here
