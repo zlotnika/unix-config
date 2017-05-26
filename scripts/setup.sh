@@ -2,14 +2,25 @@
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew cask install google-chrome
-brew cask install flux
 brew cask install spectacle
-brew cask install flash
+brew cask install virtualbox
+brew cask install slack
+
+brew cask install vagrant
+brew cask install 1password
+brew cask install knox
+brew cask install skype-for-business
 
 brew install emacs
 brew install bash-completion
 brew install git
 brew install switchaudio-osx
+
+brew install docker
+brew install dinghy
+brew install docker-compose
+brew install docker-machine
+# brew install openconnect
 
 mkdir ~/Library/KeyBindings
 cp ~/scripts/DefaultKeyBinding.dict ~/Library/KeyBindings/
