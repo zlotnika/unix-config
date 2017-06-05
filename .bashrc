@@ -23,6 +23,7 @@ alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioS
 alias gerp="grep -ir --exclude=\*.{log,cache}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
+alias re-add-ssh="ssh-add ~/.ssh/id_rsa ~/.ssh/rs_aws_rsa"
 
 #### functions ####
 # Create gif screencast for Prompt
@@ -36,10 +37,6 @@ function movToGif(){
 
 function brew-cask-upgrade(){
   brew cask uninstall --force $1 && brew cask install $1
-}
-
-function re-add-ssh(){
-  ssh-add ~/.ssh/id_rsa ~/.ssh/rs_aws_rsa
 }
 
 #### shims ####
