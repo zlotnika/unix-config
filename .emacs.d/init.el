@@ -149,7 +149,7 @@
 (add-hook 'js2-mode-hook #'jscs-fix-run-before-save)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js2-mode))
-;;(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
+(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 (provide 'init)
 ;;; init.el ends here
