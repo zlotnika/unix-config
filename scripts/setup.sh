@@ -6,20 +6,23 @@ brew cask install spectacle
 brew cask install virtualbox
 brew cask install slack
 
-brew cask install vagrant
-brew cask install 1password
-brew cask install knox
-brew cask install skype-for-business
-
 brew install emacs
 brew install bash-completion
 brew install git
 brew install switchaudio-osx
 
-brew install docker
-brew install dinghy
-brew install docker-compose
-brew install docker-machine
+# rs
+brew cask install vagrant
+brew cask install 1password
+brew cask install knox
+brew cask install skype-for-business
+
+# docker
+# brew install docker
+# brew tap codekitchen/dinghy
+# brew install dinghy
+# brew install docker-compose
+# brew install docker-machine
 # brew install openconnect
 
 mkdir ~/Library/KeyBindings
