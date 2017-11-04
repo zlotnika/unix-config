@@ -57,12 +57,13 @@ if which dinghy > /dev/null; then eval $(dinghy env); fi
 #### path ####
 # make brew take precedence
 PATH=/usr/local/bin:$PATH
+PATH="/usr/local/sbin:$PATH"
 
 # node
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 #export PATH="$PATH:`yarn global bin`"
 # some of my special scripts
-export PATH=$HOME/scripts/bin:$PATH
+PATH=$HOME/scripts/bin:$PATH
 
 # local wins
 PATH=./bin:$PATH
