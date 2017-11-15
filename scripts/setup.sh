@@ -32,6 +32,7 @@ cp ~/scripts/DefaultKeyBinding.dict ~/Library/KeyBindings/
 # 535 -> 12609 where _SYSTEM_CENTER_:com.apple.TMHelperAgent
 # `cd `getconf DARWIN_USER_DIR`/com.apple.notificationcenter/db`
 # `sqlite3 db`
+# `select flags from app_info where bundleid = '_SYSTEM_CENTER_:com.apple.TMHelperAgent';`
 # `update app_info set flags=12609 where bundleid = '_SYSTEM_CENTER_:com.apple.TMHelperAgent';`
 echo "http://apple.stackexchange.com/questions/125054/how-do-i-get-time-machine-to-show-in-notification-center"
 
