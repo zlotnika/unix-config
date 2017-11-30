@@ -14,7 +14,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && yarn global upgrade > /dev/null && brew-cask-outdated && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew cleanup && brew cask cleanup && yarn global upgrade > /dev/null && brew cask outdated --greedy && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -52,16 +52,23 @@ fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # docker
-if which dinghy > /dev/null; then eval $(dinghy env); fi
+alias fuck-dinghy="unset DOCKER_HOST DOCKER_CERT_PATH DOCKER_MACHINE_NAME DOCKER_TLS_VERIFY"
+alias use-dinghy='eval $(dinghy env)'
+# if which dinghy > /dev/null; then eval $(dinghy env); fi
 
 #### path ####
+# node
+PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+#export PATH="$PATH:`yarn global bin`"
+
+# go
+GOPATH=$HOME/go
+PATH=$GOPATH/bin:$PATH
+
 # make brew take precedence
 PATH=/usr/local/bin:$PATH
 PATH="/usr/local/sbin:$PATH"
 
-# node
-PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
-#export PATH="$PATH:`yarn global bin`"
 # some of my special scripts
 PATH=$HOME/scripts/bin:$PATH
 

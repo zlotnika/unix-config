@@ -140,7 +140,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
 ;; python ;;
-(add-to-list 'auto-mode-alist '("\\BUILD\\'" . python-mode)) ;; actually bazel, but close enough
+(add-to-list 'auto-mode-alist '("\\BUILD.bazel\\'" . python-mode)) ;; actually bazel, but close enough
 
 ;; javascript ;;
 (setq javascript-indent-level 2)
