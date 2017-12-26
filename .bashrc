@@ -43,10 +43,8 @@ function brew-cask-upgrade(){
 # get this ssh key running
 #eval "$(ssh-agent -s)"
 
-# git autocompletion
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
+# bash completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
