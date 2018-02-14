@@ -18,5 +18,4 @@ find $directory_name -type f -exec sed -i "" "s#$replace#$with#g" {} \;
 
 # ~/scripts/replace.sh 'toggled=\([^ ]*\)' 'toggled=(readonly "\1")' app/templates/
 
-# replace ' \([a-z_A-Z0-9/]*\#[a-z_A-Z0-9/]*\) \([a-z_/0-9]* \)*' '\
-' thing5.txt
+# replace ' \([a-z_A-Z0-9/]*\#[a-z_A-Z0-9/]*\) \([a-z_/0-9]* \)*' '\' thing5.txt
