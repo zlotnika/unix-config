@@ -20,7 +20,7 @@ alias ejectdisk4="diskutil eject /dev/disk4"
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 # spelling
-alias gerp="grep -ir --exclude=\*.{log,cache,vendor,.git}"
+alias gerp="grep -ir --color --exclude-dir={log,cache,vendor,.git}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
@@ -63,11 +63,11 @@ PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 GOPATH=$HOME/go
 PATH=$GOPATH/bin:$PATH
 
-# make brew take precedence
+# brew wins
 PATH=/usr/local/bin:$PATH
 PATH="/usr/local/sbin:$PATH"
 
-# some of my special scripts
+# my special scripts
 PATH=$HOME/scripts/bin:$PATH
 
 # local wins
