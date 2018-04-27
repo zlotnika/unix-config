@@ -52,7 +52,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # docker
 alias fuck-dinghy="unset DOCKER_HOST DOCKER_CERT_PATH DOCKER_MACHINE_NAME DOCKER_TLS_VERIFY"
 alias use-dinghy='eval $(dinghy env)'
-# if which dinghy > /dev/null; then eval $(dinghy env); fi
+if which dinghy > /dev/null; then eval $(dinghy env); fi
 
 #### path ####
 # node
