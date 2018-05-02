@@ -80,7 +80,3 @@ source ~/.bashrc.d/homebrew-github-api-token.sh
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
-
-source /usr/local/bin/hubflow-shortcuts
-
-source ~/.bashrc.d/rs-bashrc.sh
