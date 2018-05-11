@@ -151,6 +151,7 @@
 (add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 ;; go ;;
+(setq gofmt-command "goimports")
 (add-hook 'before-save-hook #'gofmt-before-save)
 
 (provide 'init)
