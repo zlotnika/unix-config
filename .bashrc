@@ -24,6 +24,7 @@ alias gerp="grep -ir --color --exclude-dir={log,cache,vendor,.git}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
+alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
 
 #### functions ####
 # Create gif screencast for Prompt
