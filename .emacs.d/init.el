@@ -83,7 +83,7 @@
 ;; automatic pairs
 ;; (electric-pair-mode 1)
 
-(set-default-font "Andale Mono-18")
+(set-frame-font "Andale Mono-18")
 
 ;;;;;;;;;;;
 ;; Modes ;;
@@ -153,6 +153,7 @@
 (add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 ;; go ;;
+(require 'go-mode)
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook #'gofmt-before-save)
 
@@ -176,4 +177,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "WhiteSmoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Andale Mono")))))
