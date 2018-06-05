@@ -38,7 +38,3 @@ echo "http://apple.stackexchange.com/questions/125054/how-do-i-get-time-machine-
 
 # turn off emdash craziness
 echo "http://superuser.com/questions/555628/how-to-stop-mac-to-convert-typing-double-dash-to-emdash"
-
-# brew-cask-outdated
-curl https://raw.githubusercontent.com/bgandon/brew-cask-outdated/master/brew-cask-outdated.sh > /usr/local/bin/brew-cask-outdated
-chmod +x /usr/local/bin/brew-cask-outdated
