@@ -83,7 +83,16 @@
 ;; automatic pairs
 ;; (electric-pair-mode 1)
 
+;; make it big
 (set-frame-font "Andale Mono-18")
+
+;; rainbow
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; hl-line-mode
+(add-hook 'prog-mode-hook #'hl-line-mode)
+
+(load-theme 'abyss t)
 
 ;;;;;;;;;;;
 ;; Modes ;;
@@ -141,9 +150,6 @@
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
-;; python ;;
-(add-to-list 'auto-mode-alist '("\\BUILD.bazel\\'" . python-mode)) ;; actually bazel, but close enough
-
 ;; javascript ;;
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
@@ -164,13 +170,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (manoj-dark)))
  '(custom-safe-themes
    (quote
-    ("19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default)))
+    ("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default)))
  '(package-selected-packages
    (quote
-    (protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs js2-mode gitconfig-mode flycheck auto-complete apache-mode)))
+    (abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs js2-mode gitconfig-mode flycheck auto-complete apache-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
