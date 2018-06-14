@@ -86,13 +86,15 @@
 ;; make it big
 (set-frame-font "Andale Mono-18")
 
-;; rainbow
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-;; hl-line-mode
-(add-hook 'prog-mode-hook #'hl-line-mode)
-
 (load-theme 'abyss t)
+
+;; highlight the current line
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(set-face-background 'hl-line "#223344")
+(set-face-foreground 'highlight nil)
+
+;; rainbow (())
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;;;;;;;;;;
 ;; Modes ;;
