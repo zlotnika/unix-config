@@ -90,8 +90,6 @@
 
 ;; highlight the current line
 (add-hook 'prog-mode-hook #'hl-line-mode)
-(set-face-background 'hl-line "#223344")
-(set-face-foreground 'highlight nil)
 
 ;; rainbow (())
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
