@@ -156,12 +156,19 @@
 (setq js2-basic-offset 2)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js2-mode))
-(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
+(eval-after-load 'js-mode
+     '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+(eval-after-load 'js2-mode
+     '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
 ;; go ;;
 (require 'go-mode)
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook #'gofmt-before-save)
+
+;; bazel ;;
+(require 'bazel-mode)
+(add-to-list 'auto-mode-alist '("BUILD" . bazel-mode))
 
 (provide 'init)
 ;;; init.el ends here
