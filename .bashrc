@@ -51,6 +51,7 @@ function brew-cask-upgrade(){
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # docker
+alias dinghy-time-reset="docker-machine ssh dinghy \"sudo date -u $(date -u +%m%d%H%M%Y)\""
 alias fuck-dinghy="unset DOCKER_HOST DOCKER_CERT_PATH DOCKER_MACHINE_NAME DOCKER_TLS_VERIFY"
 alias use-dinghy='eval $(dinghy env)'
 if which dinghy > /dev/null; then eval $(dinghy env); fi
