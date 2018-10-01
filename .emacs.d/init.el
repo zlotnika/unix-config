@@ -164,8 +164,7 @@
 ;; go ;;
 (require 'go-mode)
 (setq gofmt-command "goimports")
-(add-hook 'before-save-hook #'gofmt-before-save)
-(local-set-key (kbd "M-.") #'godef-jump)
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; bazel ;;
 (require 'bazel-mode)
