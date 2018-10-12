@@ -94,6 +94,13 @@
 ;; rainbow (())
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+;; don't split the window
+(defun no-split-window ()
+  (interactive)
+  nil)
+
+(setq split-window-preferred-function 'no-split-window)
+
 ;;;;;;;;;;;
 ;; Modes ;;
 ;;;;;;;;;;;
