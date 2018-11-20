@@ -20,13 +20,25 @@ alias ejectdisk4="diskutil eject /dev/disk4"
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 # spelling
-alias gerp="grep -ir --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
+alias gerp="grep -irn --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
 alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
 
 #### functions ####
+curl-time() {
+    curl --silent --output /dev/null --write-out "\
+   namelookup:  %{time_namelookup}s\n\
+      connect:  %{time_connect}s\n\
+   appconnect:  %{time_appconnect}s\n\
+  pretransfer:  %{time_pretransfer}s\n\
+     redirect:  %{time_redirect}s\n\
+starttransfer:  %{time_starttransfer}s\n\
+-------------------------\n\
+        total:  %{time_total}s\n" "$@"
+}
+
 # Create gif screencast for Prompt
 function mov_to_gif() {
   ffmpeg -i $1 -vf scale=800:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > ~/Downloads/out.gif
