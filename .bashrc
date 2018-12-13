@@ -8,7 +8,7 @@ export PS1=" \[$BCyan\]\W\[$BPurple\]\$( __git_ps1)\[$Color_Off\] "
 # visual bell
 set bell-style visible
 
-#### aliases ####
+#### functions ####
 alias be="bundle exec"
 alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v "grep /usr"|cut -d " " -f1|xargs -n 1 kill -HUP $1'
 # colors
@@ -26,7 +26,8 @@ alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmai
 alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
 alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
 
-#### functions ####
+alias dinghy-time-reset="docker-machine ssh dinghy \"sudo date -u $(date -u +%m%d%H%M%Y)\""
+
 curl-time() {
     curl --silent --output /dev/null --write-out "\
    namelookup:  %{time_namelookup}s\n\
@@ -37,15 +38,6 @@ curl-time() {
 starttransfer:  %{time_starttransfer}s\n\
 -------------------------\n\
         total:  %{time_total}s\n" "$@"
-}
-
-# Create gif screencast for Prompt
-function mov_to_gif() {
-  ffmpeg -i $1 -vf scale=800:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > ~/Downloads/out.gif
-}
-
-function movToGif(){
-  ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - ~/Downloads/out.gif
 }
 
 function brew-cask-upgrade(){
@@ -63,9 +55,6 @@ function brew-cask-upgrade(){
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # docker
-alias dinghy-time-reset="docker-machine ssh dinghy \"sudo date -u $(date -u +%m%d%H%M%Y)\""
-alias fuck-dinghy="unset DOCKER_HOST DOCKER_CERT_PATH DOCKER_MACHINE_NAME DOCKER_TLS_VERIFY"
-alias use-dinghy='eval $(dinghy env)'
 if which dinghy > /dev/null; then eval $(dinghy env); fi
 
 #### path ####
