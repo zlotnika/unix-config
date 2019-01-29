@@ -26,7 +26,7 @@ alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmai
 alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
 alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
 
-alias dinghy-time-reset="docker-machine ssh dinghy \"sudo date -u $(date -u +%m%d%H%M%Y)\""
+alias dinghy-time-reset='docker-machine ssh dinghy "sudo date -u $(date -u +%m%d%H%M%Y)"'
 
 curl-time() {
     curl --silent --output /dev/null --write-out "\
