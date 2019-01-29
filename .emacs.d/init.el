@@ -63,7 +63,7 @@
 (setq require-final-newline t)
 
 ;; clean up whitespace
-;;(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (defun ask-user-about-supersession-threat (fn)
   "blatantly ignore files that changed on disk"
