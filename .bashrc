@@ -23,7 +23,7 @@ alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioS
 alias gerp="grep -irn --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
-alias re-add-ssh="ssh-add ~/.ssh/id_rsa"
+alias re-add-ssh="ssh-add -K ~/.ssh/id_rsa"
 alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
 
 alias dinghy-time-reset='docker-machine ssh dinghy "sudo date -u $(date -u +%m%d%H%M%Y)"'
