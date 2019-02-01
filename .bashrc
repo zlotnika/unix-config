@@ -57,6 +57,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # docker
 if which dinghy > /dev/null; then eval $(dinghy env); fi
 
+if which thefuck > /dev/null; then eval $(thefuck --alias); fi
+
 #### path ####
 # node
 PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"

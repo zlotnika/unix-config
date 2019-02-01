@@ -64,6 +64,7 @@
 
 ;; clean up whitespace
 (add-hook 'before-save-hook 'whitespace-cleanup)
+;; (setq before-save-hook nil)
 
 (defun ask-user-about-supersession-threat (fn)
   "blatantly ignore files that changed on disk"
