@@ -20,7 +20,7 @@ alias ejectdisk4="diskutil eject /dev/disk4"
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 # spelling
-alias gerp="grep -irn --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
+alias gerp="grep -I --recursive --no-messages --ignore-case --line-number --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add -K ~/.ssh/id_rsa"
