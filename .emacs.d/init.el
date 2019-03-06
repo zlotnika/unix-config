@@ -3,7 +3,6 @@
 ;; Install via Melpa:
 ;; auto-complete
 ;; flycheck
-;; js2-mode
 ;; json-mode
 ;; magit
 ;; markdown-mode
@@ -63,7 +62,20 @@
 (setq require-final-newline t)
 
 ;; clean up whitespace
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(defvar inhibit-whitespace nil)
+(defun my-whitespace-cleanup ()
+  (unless inhibit-whitespace (whitespace-cleanup)))
+(add-hook 'before-save-hook 'my-whitespace-cleanup)
+
+(defun yes-whitespace ()
+  (interactive)
+  (set (make-local-variable 'inhibit-whitespace) t))
+
+(defun no-whitespace ()
+  (interactive)
+  (set (make-local-variable 'inhibit-whitespace) 0))
+
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
 ;; (setq before-save-hook nil)
 
 (defun ask-user-about-supersession-threat (fn)
@@ -143,6 +155,7 @@
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.ember-cli\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.libsonnet\\'" . json-mode))
 
 ;; css ;;
 (setq css-indent-offset 2)
@@ -181,8 +194,8 @@
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
 (setq js2-basic-offset 2)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
 (eval-after-load 'js-mode
      '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 (eval-after-load 'js2-mode
@@ -199,7 +212,7 @@
 
 ;; docker ;;
 (require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(add-to-list 'auto-mode-alist '("Dockerfile" . dockerfile-mode))
 
 (provide 'init)
 ;;; init.el ends here
@@ -213,7 +226,7 @@
     ("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default)))
  '(package-selected-packages
    (quote
-    (vue-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs js2-mode gitconfig-mode flycheck auto-complete apache-mode)))
+    (vue-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
