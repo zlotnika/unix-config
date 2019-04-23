@@ -129,6 +129,9 @@
 (setq-default sh-basic-offset 2)
 (setq-default sh-indentation 2)
 
+;; sql ;;
+(add-to-list 'auto-mode-alist '("\\.pgsql\\'" . sql-mode))
+
 ;; ruby ;;
 (setq ruby-deep-indent-paren nil)
 (setq ruby-deep-indent-paren-style nil)
