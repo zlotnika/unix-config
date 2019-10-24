@@ -1,3 +1,5 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 #### pretty terminal ####
 # https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
 source ~/.bashrc.d/git-prompt.sh
