@@ -204,10 +204,11 @@
 (eval-after-load 'js2-mode
      '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
-;; go ;;
+;; golang ;;
 (require 'go-mode)
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
+(setq-default flycheck-disabled-checkers '(go-vet))
 
 ;; bazel ;;
 (require 'bazel-mode)

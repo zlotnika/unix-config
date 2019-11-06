@@ -63,7 +63,7 @@ if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 
 #### path ####
 # node
-PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+#PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 #export PATH="$PATH:`yarn global bin`"
 
 # go
