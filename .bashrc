@@ -9,6 +9,8 @@ source ~/.bashrc.d/colors.sh
 export PS1=" \[$BCyan\]\W\[$BPurple\]\$( __git_ps1)\[$Color_Off\] "
 # visual bell
 set bell-style visible
+# use emacs
+export EDITOR=emacs
 
 #### functions ####
 alias be="bundle exec"
