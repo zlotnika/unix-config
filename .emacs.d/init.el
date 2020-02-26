@@ -192,7 +192,6 @@
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 
 ;; javascript ;;
 (setq javascript-indent-level 2)
@@ -231,7 +230,7 @@
     ("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default)))
  '(package-selected-packages
    (quote
-    (vue-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode)))
+    (fountain-mode vue-mode abyss-theme flycheck-gometalinter protobuf-mode eslint-fix sass-mode json-mode gitignore-mode haml-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode magit jscs gitconfig-mode auto-complete apache-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
