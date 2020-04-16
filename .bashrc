@@ -29,8 +29,8 @@ alias gerp="grep -I --recursive --no-messages --ignore-case --line-number --colo
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add -K ~/.ssh/id_rsa"
 alias remove-bad-sha='find .git/objects/ -name "\.\!*" -delete'
-
 alias dinghy-time-reset='docker-machine ssh dinghy "sudo date -u $(date -u +%m%d%H%M%Y)"'
+alias random-password='openssl rand -base64 29 | tr -d "=+/" | cut -c1-25'
 
 curl-time() {
     curl --silent --output /dev/null --write-out "\
