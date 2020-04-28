@@ -65,16 +65,15 @@ if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 
 #### path ####
 # node
-#PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
-#export PATH="$PATH:`yarn global bin`"
+export NODE_PATH=/usr/local/lib/node_modules
 
 # go
-GOPATH=$HOME/go
-PATH=$GOPATH/bin:$PATH
+#GOPATH=$HOME/go
+#PATH=$GOPATH/bin:$PATH
 
 # brew wins
 PATH=/usr/local/bin:$PATH
-PATH="/usr/local/sbin:$PATH"
+PATH=/usr/local/sbin:$PATH
 
 # my special scripts
 PATH=$HOME/scripts/bin:$PATH
