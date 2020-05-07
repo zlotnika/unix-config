@@ -13,7 +13,7 @@ set bell-style visible
 export EDITOR=emacs
 
 #### functions ####
-alias be="bundle exec"
+alias k="kubectl"
 alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v "grep /usr"|cut -d " " -f1|xargs -n 1 kill -HUP $1'
 # colors
 alias ls="ls -G"
