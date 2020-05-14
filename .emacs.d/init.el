@@ -193,6 +193,9 @@
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
+;; scss ;;
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
 ;; javascript ;;
 (setq javascript-indent-level 2)
 (setq js-indent-level 2)
