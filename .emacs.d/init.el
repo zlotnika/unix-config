@@ -180,8 +180,8 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-attr-indent-offset 2)
 
-  (setq web-mode-style-padding 2)
-  (setq web-mode-script-padding 2)
+  (setq web-mode-style-padding 0)
+  (setq web-mode-script-padding 0)
   (setq web-mode-block-padding 2)
 
   (setq web-mode-enable-auto-pairing t)
@@ -192,6 +192,7 @@
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 
 ;; scss ;;
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
