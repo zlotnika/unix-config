@@ -210,7 +210,7 @@
 
 ;; golang ;;
 (require 'go-mode)
-(setq gofmt-command "goimports")
+;;(setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 (setq-default flycheck-disabled-checkers '(go-vet))
 
