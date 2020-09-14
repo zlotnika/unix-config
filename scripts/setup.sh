@@ -32,3 +32,12 @@ echo "http://apple.stackexchange.com/questions/125054/how-do-i-get-time-machine-
 
 # turn off emdash craziness
 echo "http://superuser.com/questions/555628/how-to-stop-mac-to-convert-typing-double-dash-to-emdash"
+
+# fix unifi
+echo "https://community.ui.com/questions/Unifi-Controller-5-11-50-on-Mac-OS-X-Catalina-fails-to-start-/2fde6f63-b0ac-43a0-83f7-5cf43ba3d40f#answer/313a9c88-0f91-421d-baa0-4959acb7d6df"
+
+sudo ln -s /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk /Applications/UniFi.app/Contents/PlugIns/adoptopenjdk-8.jdk
+echo "sudo emacs /Applications/UniFi.app/Contents/Info.plist"
+echo "after JVMOptions, do:
+<key>JVMRuntime</key>
+<string>adoptopenjdk-8.jdk</string>"
