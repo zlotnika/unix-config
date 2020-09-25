@@ -41,3 +41,7 @@ echo "sudo emacs /Applications/UniFi.app/Contents/Info.plist"
 echo "after JVMOptions, do:
 <key>JVMRuntime</key>
 <string>adoptopenjdk-8.jdk</string>"
+
+# fix password
+echo "https://medium.com/@chearnofficial/how-to-use-short-passwords-on-macos-mojave-4-characters-not-required-4c66a54183eb"
+pwpolicy -clearaccountpolicies
