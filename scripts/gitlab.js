@@ -5,12 +5,12 @@ module.exports = {
   async deleteRegistryRepository(repositoryID, projectID, token, dryRun = false) {
     let tags = 'firstTime';
     while (!dryRun && tags.length > 0) {
-      tags = (await axios.get(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}/tags?private_token=${token}`)).data
+      tags = (await axios.get(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}/tags?private_token=${process.env.GITLAB_ACCESS_TOKEN}`)).data
       tags.forEach(async (tag) => {
         console.log(`${dryRun ? 'not' : ''} deleting tag ${tag.name}`);
         if (!dryRun) {
           try {
-            await axios.delete(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}/tags/${tag.name}?private_token=${token}`)
+            await axios.delete(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}/tags/${tag.name}?private_token=${process.env.GITLAB_ACCESS_TOKEN}`)
           } catch (e) {
             console.error(`e.response.status for tag.name`);
           }
@@ -18,7 +18,7 @@ module.exports = {
       })
     }
 
-    await axios.delete(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}?private_token=${token}`)
+    await axios.delete(`https://gitlab.com/api/v4/projects/${projectID}/registry/repositories/${repositoryID}?private_token=${process.env.GITLAB_ACCESS_TOKEN}`)
   },
 
   async getRunner(id) {
