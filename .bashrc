@@ -18,7 +18,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew outdated --cask && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew cleanup && brew outdated --cask --greedy && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -66,6 +66,9 @@ if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 #### path ####
 # node
 export NODE_PATH=/usr/local/lib/node_modules
+
+# krew
+export PATH="${PATH}:${HOME}/.krew/bin"
 
 # go
 #GOPATH=$HOME/go
