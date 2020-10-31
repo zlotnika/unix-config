@@ -88,7 +88,7 @@ export PATH
 
 #### ENV ####
 source ~/.bashrc.d/homebrew-github-api-token.sh
-source ~/.bashrc.d/gitlab-access-token.sh
+[ -f ~/.bashrc.d/gitlab-access-token.sh ] && source ~/.bashrc.d/gitlab-access-token.sh
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
