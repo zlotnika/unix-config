@@ -16,6 +16,15 @@ function until-success() {
   done
 }
 
+function unregister-all-runners() {
+  docker run --rm \
+         -v /etc/gitlab-runner:/etc/gitlab-runner \
+         -v /var/run/docker.sock:/var/run/docker.sock \
+         -e DOCKER_IMAGE=docker:latest \
+         gitlab/gitlab-runner:v13.4.0 \
+         unregister --all-runners
+}
+
 function register-shell-runner() {
   if grep -q ${HOSTNAME}-shell /etc/gitlab-runner/config.toml; then
     echo "Shell runner already instantiated..."
@@ -45,8 +54,8 @@ function register-flat-runner() {
          -v /etc/gitlab-runner:/etc/gitlab-runner \
          -v /var/run/docker.sock:/var/run/docker.sock \
          -e DOCKER_IMAGE=docker:latest \
-         gitlab/gitlab-runner:v12.4.1 \
-         register -n \
+         gitlab/gitlab-runner:v13.4.0 \
+         register --non-interactive \
          --name ${HOSTNAME}-flat \
          --url https://gitlab.com/ \
          --registration-token foo \
@@ -74,8 +83,8 @@ function register-normal-runner() {
   docker run --rm \
          -v /etc/gitlab-runner:/etc/gitlab-runner \
          -v /var/run/docker.sock:/var/run/docker.sock \
-         -e DOCKER_IMAGE=docker:19.03.1 \
-         gitlab/gitlab-runner:v12.4.1 \
+         -e DOCKER_IMAGE=docker:latest \
+         gitlab/gitlab-runner:v13.4.0 \
          register --run-untagged -n \
          -u https://gitlab.com/ \
          -r foo \
@@ -85,7 +94,7 @@ function register-normal-runner() {
          --env DOCKER_TLS=true \
          --env DOCKER_CERT_PATH=/certs/client \
          --executor docker \
-         --docker-image "docker:19.03.1" \
+         --docker-image "docker:latest" \
          --docker-privileged \
          --docker-volumes "/certs/client"
 
@@ -106,7 +115,7 @@ else
   docker run -d --name gitlab-runner --restart always \
          -v /etc/gitlab-runner:/etc/gitlab-runner \
          -v /var/run/docker.sock:/var/run/docker.sock \
-         gitlab/gitlab-runner:v12.4.1
+         gitlab/gitlab-runner:v13.4.0
 fi
 
 exit 0
