@@ -25,7 +25,7 @@ function register-shell-runner() {
   gitlab-runner register \
                 --name ${HOSTNAME}-shell \
                 --url https://gitlab.com/ \
-                --registration-token fheSopgnmD7M2Y7-RQQr \
+                --registration-token bar \
                 --tag-list shell,bazel,gcloud,v023 \
                 --executor shell \
                 --cache-cache-shared \
@@ -49,7 +49,7 @@ function register-flat-runner() {
          register -n \
          --name ${HOSTNAME}-flat \
          --url https://gitlab.com/ \
-         --registration-token 582-aog5zuWUux3CCKV_ \
+         --registration-token foo \
          --tag-list flat \
          --executor docker \
          --env DOCKER_SOCKET=/var/run/docker.sock \
@@ -78,7 +78,7 @@ function register-normal-runner() {
          gitlab/gitlab-runner:v12.4.1 \
          register --run-untagged -n \
          -u https://gitlab.com/ \
-         -r 582-aog5zuWUux3CCKV_ \
+         -r foo \
          --docker-privileged \
          --name ${HOSTNAME}-normal \
          --env DOCKER_HOST=docker:2376 \
