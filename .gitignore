@@ -21,3 +21,4 @@
 .bashrc.d/homebrew-github-api-token.sh
 .bashrc.d/gitlab-access-token.sh
 .bashrc.d/rs-bashrc.sh
+.ssh

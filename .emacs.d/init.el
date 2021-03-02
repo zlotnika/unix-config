@@ -197,11 +197,12 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; javascript ;;
-(setq javascript-indent-level 2)
-(setq js-indent-level 2)
-(setq js2-basic-offset 2)
+(setq javascript-indent-level 4)
+(setq js-indent-level 4)
+(setq js2-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
 (eval-after-load 'js-mode
      '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 (eval-after-load 'js2-mode
@@ -230,6 +231,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default))
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    '(jsonnet-mode fountain-mode typescript-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode))
  '(send-mail-function 'sendmail-send-it))
