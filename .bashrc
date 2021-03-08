@@ -75,6 +75,7 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 #PATH=$GOPATH/bin:$PATH
 
 # brew wins
+eval "$(/opt/homebrew/bin/brew shellenv)"
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/sbin:$PATH
 
