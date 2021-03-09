@@ -88,7 +88,7 @@ PATH=./bin:$PATH
 export PATH
 
 #### ENV ####
-source ~/.bashrc.d/homebrew-github-api-token.sh
+[ -f ~/.bashrc.d/homebrew-github-api-token.sh ] && source ~/.bashrc.d/homebrew-github-api-token.sh
 [ -f ~/.bashrc.d/gitlab-access-token.sh ] && source ~/.bashrc.d/gitlab-access-token.sh
 
 # important to know
