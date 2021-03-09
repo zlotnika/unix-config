@@ -52,14 +52,14 @@ function brew-cask-upgrade(){
 # get this ssh key running
 #eval "$(ssh-agent -s)"
 
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # bash completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# docker
-# use docker-for-mac now
 
 if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 
@@ -73,11 +73,6 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 # go
 #GOPATH=$HOME/go
 #PATH=$GOPATH/bin:$PATH
-
-# brew wins
-eval "$(/opt/homebrew/bin/brew shellenv)"
-PATH=/usr/local/bin:$PATH
-PATH=/usr/local/sbin:$PATH
 
 # my special scripts
 PATH=$HOME/scripts/bin:$PATH
