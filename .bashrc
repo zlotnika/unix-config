@@ -44,8 +44,27 @@ starttransfer:  %{time_starttransfer}s\n\
         total:  %{time_total}s\n" "$@"
 }
 
+function cleanup-git() {
+  git remote prune origin
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch --delete --force
+}
+
+function rebase-git() {
+  git checkout ${1:-master}
+  git pull
+  git checkout -
+  git rebase ${1:-master}
+}
+
 function brew-cask-upgrade(){
   brew uninstall --cask --force $1 && brew install --cask $1
+}
+
+function subfolder-git() {
+  git filter-branch -f --prune-empty --tree-filter '
+    mkdir -p "$REPO_NAME"
+    git ls-tree --name-only $GIT_COMMIT | xargs -I{} mv {} "$REPO_NAME"
+'
 }
 
 #### shims ####
@@ -76,9 +95,6 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 
 # my special scripts
 PATH=$HOME/scripts/bin:$PATH
-
-# local wins
-PATH=./bin:$PATH
 
 export PATH
 

@@ -19,7 +19,9 @@
 ;; MELPA
 ;; list-packages i install x execute U update
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 ;; flycheck
@@ -171,35 +173,36 @@
 (add-to-list 'auto-mode-alist '("\\.mkd\\'" . markdown-mode))
 
 ;; HTML ;;
-(require 'web-mode)
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-attr-indent-offset 2)
+(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
+;; (require 'web-mode)
+;; (defun my-web-mode-hook ()
+;;   "Hooks for Web mode."
+;;   (setq web-mode-markup-indent-offset 2)
+;;   (setq web-mode-css-indent-offset 2)
+;;   (setq web-mode-code-indent-offset 2)
+;;   (setq web-mode-attr-indent-offset 2)
 
-  (setq web-mode-style-padding 0)
-  (setq web-mode-script-padding 0)
-  (setq web-mode-block-padding 2)
+;;   (setq web-mode-style-padding 0)
+;;   (setq web-mode-script-padding 0)
+;;   (setq web-mode-block-padding 2)
 
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-current-element-highlight t)
-  (setq web-mode-enable-current-column-highlight t)
-)
-(add-hook 'web-mode-hook  'my-web-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+;;   (setq web-mode-enable-auto-pairing t)
+;;   (setq web-mode-enable-current-element-highlight t)
+;;   (setq web-mode-enable-current-column-highlight t)
+;; )
+;; (add-hook 'web-mode-hook  'my-web-mode-hook)
+;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 
 ;; scss ;;
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; javascript ;;
-(setq javascript-indent-level 4)
-(setq js-indent-level 4)
-(setq js2-basic-offset 4)
+(setq javascript-indent-level 2)
+(setq js-indent-level 2)
+(setq js2-basic-offset 2)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
@@ -209,14 +212,14 @@
      '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
 ;; golang ;;
-(require 'go-mode)
+;; (require 'go-mode)
 ;;(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-(setq-default flycheck-disabled-checkers '(go-vet))
+;; (add-hook 'before-save-hook 'gofmt-before-save)
+;; (setq-default flycheck-disabled-checkers '(go-vet))
 
 ;; bazel ;;
-(require 'bazel-mode)
-(add-to-list 'auto-mode-alist '("BUILD" . bazel-mode))
+;; (require 'bazel-mode)
+;; (add-to-list 'auto-mode-alist '("BUILD" . bazel-mode))
 
 ;; docker ;;
 (require 'dockerfile-mode)
@@ -233,7 +236,7 @@
    '("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(terraform-mode jsonnet-mode fountain-mode typescript-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode))
+   '(sql-indent terraform-mode jsonnet-mode fountain-mode typescript-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode))
  '(send-mail-function 'sendmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
