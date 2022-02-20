@@ -4,11 +4,8 @@
 ;; auto-complete
 ;; flycheck
 ;; json-mode
-;; magit
 ;; markdown-mode
 ;; python-mode
-;; rspec-mode
-;; stylus-mode
 ;; web-mode
 
 ;;; Code:
@@ -236,7 +233,7 @@
    '("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(sql-indent terraform-mode jsonnet-mode fountain-mode typescript-mode abyss-theme rainbow-delimiters flycheck-gometalinter bazel-mode protobuf-mode go-mode dockerfile-mode eslint-fix git-link sass-mode json-mode gitignore-mode haml-mode yaml-mode web-mode stylus-mode ssh-config-mode ruby-end rspec-mode python-mode markdown-mode magit jscs gitconfig-mode flycheck auto-complete apache-mode))
+   '(eslint-fix terraform-mode typescript-mode abyss-theme rainbow-delimiters go-mode dockerfile-mode git-link json-mode gitignore-mode yaml-mode web-mode ssh-config-mode python-mode markdown-mode gitconfig-mode flycheck auto-complete))
  '(send-mail-function 'sendmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
