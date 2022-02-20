@@ -27,11 +27,11 @@
 
 ;; term
 (add-hook 'term-mode-hook
-          (lambda ()
-            ;; C-x is the prefix command, rather than C-c
-            (term-set-escape-char ?\C-x)
-            (define-key term-raw-map "\M-y" 'yank-pop)
-                 (define-key term-raw-map "\M-w" 'kill-ring-save)))
+  (lambda ()
+    ;; C-x is the prefix command, rather than C-c
+    (term-set-escape-char ?\C-x)
+    (define-key term-raw-map "\M-y" 'yank-pop)
+    (define-key term-raw-map "\M-w" 'kill-ring-save)))
 
 ;;;; tabs ;;;;
 ;; spaces instead of tabs
@@ -44,14 +44,13 @@
 ;;;; backups ;;;;
 ;; Write backups to ~/.emacs.d/backup/
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup"))
-      backup-by-copying      t  ; Don't de-link hard links
-      version-control        t  ; Use version numbers on backups
-      delete-old-versions    t  ; Automatically delete excess backups:
-      kept-new-versions      20 ; how many of the newest versions to keep
-      kept-old-versions      5) ; and how many of the old
+  backup-by-copying      t  ; Don't de-link hard links
+  version-control        t  ; Use version numbers on backups
+  delete-old-versions    t  ; Automatically delete excess backups:
+  kept-new-versions      20 ; how many of the newest versions to keep
+  kept-old-versions      5) ; and how many of the old
 ;; Write saves to temporary directory ( /var/ something )
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs.d/backup" t)))
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/backup" t)))
 ;; don't create .# files
 (setq create-lockfiles nil)
 
@@ -61,27 +60,18 @@
 
 ;; clean up whitespace
 (defvar inhibit-whitespace nil)
-(defun my-whitespace-cleanup ()
-  (unless inhibit-whitespace (whitespace-cleanup)))
+(defun my-whitespace-cleanup () (unless inhibit-whitespace (whitespace-cleanup)))
 (add-hook 'before-save-hook 'my-whitespace-cleanup)
 
-(defun yes-whitespace ()
-  (interactive)
-  (set (make-local-variable 'inhibit-whitespace) t))
+(defun yes-whitespace () (interactive) (set (make-local-variable 'inhibit-whitespace) t))
 
-(defun no-whitespace ()
-  (interactive)
-  (set (make-local-variable 'inhibit-whitespace) 0))
+(defun no-whitespace () (interactive) (set (make-local-variable 'inhibit-whitespace) 0))
 
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 ;; (setq before-save-hook nil)
 
-(defun ask-user-about-supersession-threat (fn)
-  "blatantly ignore files that changed on disk"
-  )
-(defun ask-user-about-lock (file opponent)
-  "always grab lock"
-   t)
+(defun ask-user-about-supersession-threat (fn) "blatantly ignore files that changed on disk")
+(defun ask-user-about-lock (file opponent) "always grab lock" t)
 
 ;;;; interface ;;;;
 ;; visual bell
@@ -113,9 +103,7 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; don't split the window
-(defun no-split-window ()
-  (interactive)
-  nil)
+(defun no-split-window () (interactive) nil)
 
 (setq split-window-preferred-function 'no-split-window)
 
@@ -139,9 +127,6 @@
 (add-to-list 'auto-mode-alist '("\\Guardfile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 
-;; rspec ;;
-(setq rspec-use-vagrant-when-possible t)
-
 ;; conf ;;
 (add-to-list 'auto-mode-alist '("\\Gemfile.lock\\'" . conf-mode))
 
@@ -152,11 +137,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml.example\\'" . yaml-mode))
 
 ;; json ;;
-(add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.ember-cli\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.libsonnet\\'" . json-mode))
 
 ;; css ;;
 (setq css-indent-offset 2)
@@ -171,52 +152,51 @@
 
 ;; HTML ;;
 (add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
-;; (require 'web-mode)
-;; (defun my-web-mode-hook ()
-;;   "Hooks for Web mode."
-;;   (setq web-mode-markup-indent-offset 2)
-;;   (setq web-mode-css-indent-offset 2)
-;;   (setq web-mode-code-indent-offset 2)
+(require 'web-mode)
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
 ;;   (setq web-mode-attr-indent-offset 2)
 
-;;   (setq web-mode-style-padding 0)
-;;   (setq web-mode-script-padding 0)
-;;   (setq web-mode-block-padding 2)
+  (setq web-mode-style-padding 0)
+  (setq web-mode-script-padding 0)
+  (setq web-mode-block-padding 2)
 
-;;   (setq web-mode-enable-auto-pairing t)
-;;   (setq web-mode-enable-current-element-highlight t)
-;;   (setq web-mode-enable-current-column-highlight t)
-;; )
-;; (add-hook 'web-mode-hook  'my-web-mode-hook)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-current-column-highlight t)
+)
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+(add-hook 'web-mode-hook #'eslint-fix-auto-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; scss ;;
 ;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; javascript ;;
 (setq javascript-indent-level 2)
+(setq typescript-indent-level 2)
 (setq js-indent-level 2)
 (setq js2-basic-offset 2)
+(add-hook 'js-mode-hook #'eslint-fix-auto-mode)
+(add-hook 'ts-mode-hook #'eslint-fix-auto-mode)
+(add-hook 'js2-mode-hook #'eslint-fix-auto-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
-(eval-after-load 'js-mode
-     '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
-(eval-after-load 'js2-mode
-     '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
 ;; golang ;;
 ;; (require 'go-mode)
 ;;(setq gofmt-command "goimports")
 ;; (add-hook 'before-save-hook 'gofmt-before-save)
 ;; (setq-default flycheck-disabled-checkers '(go-vet))
-
-;; bazel ;;
-;; (require 'bazel-mode)
-;; (add-to-list 'auto-mode-alist '("BUILD" . bazel-mode))
 
 ;; docker ;;
 (require 'dockerfile-mode)
