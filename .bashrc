@@ -50,10 +50,7 @@ function cleanup-git() {
 }
 
 function rebase-git() {
-  git checkout ${1:-master}
-  git pull
-  git checkout -
-  git rebase ${1:-master}
+  git fetch && git rebase origin/${1:-main}
 }
 
 function brew-cask-upgrade(){
@@ -88,6 +85,9 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 # krew
 export PATH="${PATH}:${HOME}/.krew/bin"
+
+# libpq, psql, pg_dump
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # go
 #GOPATH=$HOME/go
