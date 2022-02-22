@@ -137,6 +137,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml.example\\'" . yaml-mode))
 
 ;; json ;;
+(add-hook 'json-mode-hook (lambda () (eslint-fix-auto-mode -1)))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;; css ;;
@@ -187,7 +188,6 @@
 (setq js2-basic-offset 2)
 (add-hook 'js-mode-hook #'eslint-fix-auto-mode)
 (add-hook 'ts-mode-hook #'eslint-fix-auto-mode)
-(add-hook 'js2-mode-hook #'eslint-fix-auto-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
