@@ -1,23 +1,13 @@
 # setup a new unix computer
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew cask install google-chrome
-brew cask install spectacle
-brew cask install slack
-
-brew install emacs
+brew install rectangle
 brew install bash-completion
 brew install git
 
-brew cask install 1password
-brew cask install keybase
+brew install emacs --cask
 
-# docker
-brew install docker
-brew tap codekitchen/dinghy
-brew install dinghy
-brew install docker-compose
-brew install docker-machine
+brew install docker --cask
 
 mkdir ~/Library/KeyBindings
 cp ~/scripts/DefaultKeyBinding.dict ~/Library/KeyBindings/

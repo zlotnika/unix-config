@@ -68,6 +68,9 @@ function subfolder-git() {
 # get this ssh key running
 #eval "$(ssh-agent -s)"
 
+# gpg
+export GPG_TTY=$(tty)
+
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
