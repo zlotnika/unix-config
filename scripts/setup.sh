@@ -4,6 +4,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install rectangle
 brew install bash-completion
 brew install git
+brew install gpg
 
 brew install emacs --cask
 
