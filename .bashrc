@@ -25,7 +25,7 @@ alias ejectdisk4="diskutil eject /dev/disk4"
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
 alias soundDisplay="SwitchAudioSource -t input -s Display\ Audio && SwitchAudioSource -s Display\ Audio && osascript -e 'set Volume 5'"
 # spelling
-alias gerp="grep -I --recursive --no-messages --ignore-case --line-number --color --exclude-dir={log,cache,vendor,dist,.git,node_modules}"
+alias gerp="grep -I --recursive --no-messages --ignore-case --line-number --color --exclude-dir={log,cache,vendor,dist,.git,node_modules,.next,.turbo,build} --exclude=tsconfig.tsbuildinfo --exclude=.eslintcache --exclude=pnpm-lock.yaml"
 # http://stackoverflow.com/questions/22887133/cron-job-how-to-send-an-output-file-to-an-email
 alias notifyFinish="mail -s 'Your process has finished, good sir.' zlotnika@gmail.com"
 alias re-add-ssh="ssh-add -K ~/.ssh/id_rsa"
@@ -50,7 +50,7 @@ function cleanup-git() {
 }
 
 function rebase-git() {
-  git fetch && git rebase origin/${1:-main}
+  git fetch && git rebase origin/${1:-master}
 }
 
 function brew-cask-upgrade(){
@@ -65,6 +65,9 @@ function subfolder-git() {
 }
 
 #### shims ####
+# docker
+export PATH="$HOME/.docker/bin:$PATH"
+
 # get this ssh key running
 #eval "$(ssh-agent -s)"
 
@@ -107,3 +110,8 @@ export PATH
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
