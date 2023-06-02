@@ -9,7 +9,26 @@ with=$2
 directory_name=${3-$default_directory}
 restrict=${4-$default_restrict}
 
-find $directory_name -type f -exec sed -i "" "s#$replace#$with#g" {} \;
+find $directory_name \
+     -type f \
+     ! -path "**/node_modules/*" \
+     ! -path "**/.git/*" \
+     ! -path "**/.husky/*" \
+     ! -name "*.pdf" \
+     ! -name "*.gif" \
+     ! -name "*.jpg" \
+     ! -name "*.png" \
+     ! -name "*.ico" \
+     ! -name "*.ttf" \
+     ! -name "*.woff" \
+     ! -name "*.woff2" \
+     ! -name "*.eot" \
+     ! -name "*.otf" \
+     ! -name "*.swf" \
+     ! -name "*.mp3" \
+     ! -name "*.mp4" \
+     ! -name "*.zip" \
+     -exec sed -i "" "s#$replace#$with#g" {} \;
 
 
 ##### EXAMPLES #####
