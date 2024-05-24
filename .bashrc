@@ -10,7 +10,7 @@ export PS1=" \[$BCyan\]\W\[$BPurple\]\$( __git_ps1)\[$Color_Off\] "
 # visual bell
 set bell-style visible
 # use emacs
-export EDITOR=emacs
+export EDITOR="emacs -nw"
 
 #### functions ####
 alias k="kubectl"
@@ -18,7 +18,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew cleanup && brew outdated --cask --greedy && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias mostTheThings="brew upgrade && brew cleanup && brew outdated --cask --greedy && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
@@ -113,3 +113,15 @@ export PATH
 
 # fnm
 eval "$(fnm env --use-on-cd)"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+export DIRECTUS_ACCESS_TOKEN=kXCohwDuZ0EWTcpZdRduRdqffBFjdcpG
+export TWITTER_ACCESS_TOKEN=foo
+export TWITTER_ACCESS_TOKEN_SECRET=bar
+export TWITTER_API_KEY=baz
+export TWITTER_API_KEY_SECRET=baff
+export TWITTER_BEARER_TOKEN=foobar
