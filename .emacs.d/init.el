@@ -159,11 +159,11 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
-;;   (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2)
 
   (setq web-mode-style-padding 0)
   (setq web-mode-script-padding 0)
-  (setq web-mode-block-padding 2)
+  (setq web-mode-block-padding 0)
 
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-current-element-highlight t)
@@ -174,6 +174,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -213,7 +214,7 @@
    '("551596f9165514c617c99ad6ce13196d6e7caa7035cea92a0e143dbe7b28be0e" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(eslint-fix terraform-mode typescript-mode abyss-theme rainbow-delimiters go-mode dockerfile-mode git-link json-mode gitignore-mode yaml-mode web-mode ssh-config-mode python-mode markdown-mode gitconfig-mode flycheck auto-complete))
+   '(js-import eslint-fix terraform-mode typescript-mode abyss-theme rainbow-delimiters go-mode dockerfile-mode git-link json-mode gitignore-mode yaml-mode web-mode ssh-config-mode python-mode markdown-mode gitconfig-mode flycheck auto-complete))
  '(send-mail-function 'sendmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

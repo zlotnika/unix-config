@@ -11,23 +11,27 @@ restrict=${4-$default_restrict}
 
 find $directory_name \
      -type f \
-     ! -path "**/node_modules/*" \
-     ! -path "**/.git/*" \
-     ! -path "**/.husky/*" \
-     ! -name "*.pdf" \
-     ! -name "*.gif" \
-     ! -name "*.jpg" \
-     ! -name "*.png" \
-     ! -name "*.ico" \
-     ! -name "*.ttf" \
-     ! -name "*.woff" \
-     ! -name "*.woff2" \
+     ! -name "*.DS_Store" \
      ! -name "*.eot" \
-     ! -name "*.otf" \
-     ! -name "*.swf" \
+     ! -name "*.gif" \
+     ! -name "*.ico" \
+     ! -name "*.jpeg" \
+     ! -name "*.jpg" \
      ! -name "*.mp3" \
      ! -name "*.mp4" \
+     ! -name "*.otf" \
+     ! -name "*.pdf" \
+     ! -name "*.png" \
+     ! -name "*.svg" \
+     ! -name "*.swf" \
+     ! -name "*.ttf" \
+     ! -name "*.webp" \
+     ! -name "*.woff" \
+     ! -name "*.woff2" \
      ! -name "*.zip" \
+     ! -path "**/.git/*" \
+     ! -path "**/.husky/*" \
+     ! -path "**/node_modules/*" \
      -exec sed -i "" "s#$replace#$with#g" {} \;
 
 
@@ -38,3 +42,5 @@ find $directory_name \
 # ~/scripts/replace.sh 'toggled=\([^ ]*\)' 'toggled=(readonly "\1")' app/templates/
 
 # replace ' \([a-z_A-Z0-9/]*\#[a-z_A-Z0-9/]*\) \([a-z_/0-9]* \)*' '\' thing5.txt
+
+# rg -l '// TODO: Fix this the next time the file is edited.' | xargs sed -i '' 's|// TODO: Fix this the next time the file is edited.||'

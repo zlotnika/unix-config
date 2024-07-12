@@ -19,7 +19,6 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
 alias allTheThings="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
-alias mostTheThings="brew upgrade && brew cleanup && brew outdated --cask --greedy && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -107,6 +106,7 @@ export PATH
 #### ENV ####
 [ -f ~/.bashrc.d/homebrew-github-api-token.sh ] && source ~/.bashrc.d/homebrew-github-api-token.sh
 [ -f ~/.bashrc.d/gitlab-access-token.sh ] && source ~/.bashrc.d/gitlab-access-token.sh
+[ -f ~/.bashrc.d/secrets.sh ] && source ~/.bashrc.d/secrets.sh
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
@@ -118,10 +118,3 @@ eval "$(fnm env --use-on-cd)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-export DIRECTUS_ACCESS_TOKEN=kXCohwDuZ0EWTcpZdRduRdqffBFjdcpG
-export TWITTER_ACCESS_TOKEN=foo
-export TWITTER_ACCESS_TOKEN_SECRET=bar
-export TWITTER_API_KEY=baz
-export TWITTER_API_KEY_SECRET=baff
-export TWITTER_BEARER_TOKEN=foobar
