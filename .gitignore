@@ -17,8 +17,7 @@
 !scripts
 !scripts/bin
 
+# but yes these specifically
 .gitconfig
-.bashrc.d/homebrew-github-api-token.sh
-.bashrc.d/gitlab-access-token.sh
 .bashrc.d/secrets.sh
 .ssh

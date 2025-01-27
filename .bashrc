@@ -52,6 +52,18 @@ function rebase-git() {
   git fetch && git rebase origin/${1:-master}
 }
 
+function commit-pr() {
+  [ -z "$1" ] && { echo "You suck."; return 1; }
+  git checkout -b zlotnik/$(echo $1 | tr ' ' '-')
+  git commit -m "$1"
+  git push --no-verify
+  open https://$(git remote get-url origin | tr ':' '/' | sed -E 's|git@||; s|\.git$||')/pull/new/zlotnik/$(echo $1 | tr ' ' '-')
+}
+
+function continue-pnpm() {
+  git reset pnpm-lock.yaml && git checkout pnpm-lock.yaml && pnpm i && git add pnpm-lock.yaml && git rebase --continue
+}
+
 function brew-cask-upgrade(){
   brew uninstall --cask --force $1 && brew install --cask $1
 }
@@ -104,8 +116,6 @@ PATH=$HOME/scripts/bin:$PATH
 export PATH
 
 #### ENV ####
-[ -f ~/.bashrc.d/homebrew-github-api-token.sh ] && source ~/.bashrc.d/homebrew-github-api-token.sh
-[ -f ~/.bashrc.d/gitlab-access-token.sh ] && source ~/.bashrc.d/gitlab-access-token.sh
 [ -f ~/.bashrc.d/secrets.sh ] && source ~/.bashrc.d/secrets.sh
 
 # important to know
@@ -118,3 +128,8 @@ eval "$(fnm env --use-on-cd)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# android emulation
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
