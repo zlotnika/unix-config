@@ -49,7 +49,7 @@ function cleanup-git() {
 }
 
 function rebase-git() {
-  git fetch && git rebase origin/${1:-master}
+  git fetch && git rebase origin/${1:-develop}
 }
 
 function commit-pr() {
@@ -62,6 +62,10 @@ function commit-pr() {
 
 function continue-pnpm() {
   git reset pnpm-lock.yaml && git checkout pnpm-lock.yaml && pnpm i && git add pnpm-lock.yaml && git rebase --continue
+}
+
+function continue-yarn() {
+  git reset yarn.lock && git checkout yarn.lock && yarn install && git add yarn.lock && git rebase --continue
 }
 
 function brew-cask-upgrade(){
@@ -91,24 +95,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # bash completion
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 
 #### path ####
 # node
 export NODE_PATH=/usr/local/lib/node_modules
 
-# krew
-export PATH="${PATH}:${HOME}/.krew/bin"
-
 # libpq, psql, pg_dump
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
-# go
-#GOPATH=$HOME/go
-#PATH=$GOPATH/bin:$PATH
 
 # my special scripts
 PATH=$HOME/scripts/bin:$PATH
@@ -120,16 +114,3 @@ export PATH
 
 # important to know
 # alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
-
-# fnm
-eval "$(fnm env --use-on-cd)"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# android emulation
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
