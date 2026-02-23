@@ -1,5 +1,10 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# Fix locale settings
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 #### pretty terminal ####
 # https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
 source ~/.bashrc.d/git-prompt.sh
@@ -49,7 +54,7 @@ function cleanup-git() {
 }
 
 function rebase-git() {
-  git fetch && git rebase origin/${1:-develop}
+  git fetch && git rebase origin/${1:-main}
 }
 
 function commit-pr() {
