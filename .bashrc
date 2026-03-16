@@ -50,7 +50,19 @@ starttransfer:  %{time_starttransfer}s\n\
 
 function cleanup-git() {
   git remote prune origin
-  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch --delete --force
+  # remove worktrees whose remote branch was deleted
+  git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read wt; do
+    [ "$wt" = "$(git rev-parse --show-toplevel)" ] && continue
+    branch=$(git -C "$wt" branch --show-current 2>/dev/null)
+    [ -z "$branch" ] && continue
+    tracking=$(git config "branch.$branch.remote" 2>/dev/null)
+    [ -z "$tracking" ] && continue
+    if ! git rev-parse --verify "refs/remotes/$tracking/$branch" >/dev/null 2>&1; then
+      echo "Removing worktree: $wt ($branch)"
+      git worktree remove "$wt" --force
+    fi
+  done
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch --delete --force 2>/dev/null
 }
 
 function rebase-git() {
