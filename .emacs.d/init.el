@@ -131,17 +131,7 @@
 ;; sql ;;
 (add-to-list 'auto-mode-alist '("\\.pgsql\\'" . sql-mode))
 
-;; ruby ;;
-(setq ruby-deep-indent-paren nil)
-(setq ruby-deep-indent-paren-style nil)
 (setq compilation-scroll-output t)
-(add-to-list 'auto-mode-alist '("\\Gemfile\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Rakefile\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Guardfile\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-
-;; conf ;;
-(add-to-list 'auto-mode-alist '("\\Gemfile.lock\\'" . conf-mode))
 
 ;; apache ;;
 (add-to-list 'auto-mode-alist '("\\.vhost\\'" . apache-mode))

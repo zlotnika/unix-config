@@ -19,7 +19,6 @@ export EDITOR="emacs -nw"
 
 #### functions ####
 alias k="kubectl"
-alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v "grep /usr"|cut -d " " -f1|xargs -n 1 kill -HUP $1'
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
@@ -193,8 +192,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 
 #### path ####
-# node
-export NODE_PATH=/usr/local/lib/node_modules
 
 # uv
 PATH=$HOME/.local/bin:$PATH
@@ -209,6 +206,3 @@ export PATH
 
 #### ENV ####
 [ -f ~/.bashrc.d/secrets.sh ] && source ~/.bashrc.d/secrets.sh
-
-# important to know
-# alias truncate='/usr/local/opt/coreutils/libexec/gnubin/truncate'
