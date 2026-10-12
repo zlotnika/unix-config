@@ -21,6 +21,19 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
+;; system clipboard (works in GUI and terminal Emacs on macOS via pbcopy/pbpaste)
+(setq select-enable-clipboard t)
+(when (and (eq system-type 'darwin) (not (display-graphic-p)))
+  (setq interprogram-cut-function
+        (lambda (text)
+          (let ((process-connection-type nil))
+            (let ((proc (start-process "pbcopy" nil "pbcopy")))
+              (process-send-string proc text)
+              (process-send-eof proc)))))
+  (setq interprogram-paste-function
+        (lambda ()
+          (shell-command-to-string "pbpaste"))))
+
 ;; flycheck
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)

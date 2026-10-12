@@ -23,7 +23,7 @@ alias railsServerRestart='ps -a|grep "/usr/local/bin/ruby script/server"|grep -v
 # colors
 alias ls="ls -G"
 # https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md
-alias allTheThings="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
+alias allTheThings="brew update && brew upgrade --yes && brew upgrade --cask --greedy --yes && brew cleanup && osascript -e 'display notification \"Done with all the things.\" with title \"Bash\" sound name \"Submarine\"'"
 alias ejectdisk4="diskutil eject /dev/disk4"
 # sound
 alias soundBuiltIn="SwitchAudioSource -t input -s Built-in\ Microphone && SwitchAudioSource -s Built-in\ Output && osascript -e 'set Volume 5'"
@@ -50,6 +50,9 @@ starttransfer:  %{time_starttransfer}s\n\
 
 function cleanup-git() {
   git remote prune origin
+  # Every process's cwd, gathered once — walking each worktree with `lsof +D` would crawl
+  # node_modules. A dev server or an editing session sits at the worktree root or just under it.
+  local cwds=$(lsof -d cwd -Fn 2>/dev/null | grep '^n' | cut -c2-)
   # remove worktrees whose remote branch was deleted
   git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read wt; do
     [ "$wt" = "$(git rev-parse --show-toplevel)" ] && continue
@@ -58,11 +61,86 @@ function cleanup-git() {
     tracking=$(git config "branch.$branch.remote" 2>/dev/null)
     [ -z "$tracking" ] && continue
     if ! git rev-parse --verify "refs/remotes/$tracking/$branch" >/dev/null 2>&1; then
+      # The remote branch goes away the moment a PR merges, which is exactly when you are most
+      # likely still sitting in that worktree with the next change half-written. Losing it is not
+      # worth the tidiness.
+      if [ -n "$(git -C "$wt" status --porcelain 2>/dev/null)" ]; then
+        echo "Uncommitted changes, skipping: $wt ($branch)"
+        continue
+      fi
+      if echo "$cwds" | grep -q "^$wt"; then
+        echo "In use, skipping: $wt ($branch)"
+        continue
+      fi
       echo "Removing worktree: $wt ($branch)"
-      git worktree remove "$wt" --force
+      # no --force: if git still considers it dirty, that is a reason to stop, not to push through
+      git worktree remove "$wt"
     fi
   done
   git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch --delete --force 2>/dev/null
+}
+
+function cleanup-claude() {
+  local toplevel=$(git rev-parse --show-toplevel)
+  local claude_dir="$toplevel/.claude/worktrees"
+  [ -d "$claude_dir" ] || return 0
+  local repo=$(basename "$toplevel")
+  git worktree prune
+  local claude_pids=$(lsof -d cwd -Fc -Fn 2>/dev/null | awk '/^p/{pid=substr($0,2)} /^cclaude/{is_claude=1} /^n/{if(is_claude) print pid, substr($0,2); is_claude=0}')
+  git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read wt; do
+    [[ "$wt" == "$claude_dir"/* ]] || continue
+    if echo "$claude_pids" | grep -q "$wt"; then
+      echo "In use, skipping: $wt"
+      continue
+    fi
+    local branch=$(git -C "$wt" branch --show-current 2>/dev/null)
+    # kill orphaned processes (dev servers) before removing
+    local pids=$(lsof -a -d cwd -t +D "$wt" 2>/dev/null)
+    [ -n "$pids" ] && echo "$pids" | xargs kill 2>/dev/null
+    echo "Removing: $wt (${branch:-detached})"
+    git worktree remove "$wt" --force
+    [ -n "$branch" ] && git branch -D "$branch" 2>/dev/null
+  done
+  # remove git-forgotten husk dirs (on disk under .claude/worktrees, not a registered worktree)
+  local registered=$(git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //')
+  for dir in "$claude_dir"/*/; do
+    dir=${dir%/}
+    [ -d "$dir" ] || continue
+    echo "$registered" | grep -qxF "$dir" && continue
+    if echo "$claude_pids" | grep -q "$dir"; then
+      echo "In use, skipping husk: $dir"
+      continue
+    fi
+    local hpids=$(lsof -a -d cwd -t +D "$dir" 2>/dev/null)
+    [ -n "$hpids" ] && echo "$hpids" | xargs kill 2>/dev/null
+    echo "Removing husk dir: $dir"
+    rm -rf "$dir"
+  done
+  # tear down orphaned Supabase docker stacks (slots whose worktree is gone)
+  if command -v docker >/dev/null 2>&1; then
+    local live_slots=$(git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read wt; do grep -hoE "${repo}-wt[0-9]+" "$wt/.env.local" 2>/dev/null; done | sort -u)
+    docker ps -a --format '{{.Names}}' | grep -oE "${repo}-wt[0-9]+" | sort -u | while read slot; do
+      echo "$live_slots" | grep -qxF "$slot" && continue
+      echo "Tearing down orphaned docker stack: $slot"
+      local ids=$(docker ps -aq --filter "name=${slot}$")
+      [ -n "$ids" ] && docker rm -f $ids >/dev/null 2>&1
+      local vols=$(docker volume ls -q | grep -E "${slot}$")
+      [ -n "$vols" ] && docker volume rm $vols >/dev/null 2>&1
+      local nets=$(docker network ls --format '{{.Name}}' | grep -E "${slot}$")
+      [ -n "$nets" ] && docker network rm $nets >/dev/null 2>&1
+    done
+  fi
+  # delete local-only branches not checked out anywhere
+  git branch --format='%(refname:short) %(upstream)' | while read branch upstream; do
+    [ "$branch" = "main" ] && continue
+    [ -n "$upstream" ] && continue
+    if git worktree list --porcelain | grep -q "^branch refs/heads/$branch$"; then
+      echo "Checked out, skipping branch: $branch"
+      continue
+    fi
+    echo "Deleting orphan branch: $branch"
+    git branch -D "$branch" 2>/dev/null
+  done
 }
 
 function rebase-git() {
@@ -117,6 +195,9 @@ if which thefuck > /dev/null; then eval $(thefuck --alias); fi
 #### path ####
 # node
 export NODE_PATH=/usr/local/lib/node_modules
+
+# uv
+PATH=$HOME/.local/bin:$PATH
 
 # libpq, psql, pg_dump
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
