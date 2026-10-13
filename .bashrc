@@ -11,7 +11,7 @@ source ~/.bashrc.d/git-prompt.sh
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 source ~/.bashrc.d/colors.sh
 # prompt
-export PS1=" \[$BCyan\]\W\[$BPurple\]\$( __git_ps1)\[$Color_Off\] "
+export PS1=" \[$BYellow\]\h:\[$BCyan\]\W\[$BPurple\]\$( __git_ps1)\[$Color_Off\] "
 # visual bell
 set bell-style visible
 # use emacs
