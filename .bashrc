@@ -142,6 +142,19 @@ function cleanup-claude() {
   done
 }
 
+function claude-account() {
+  local token
+  case "$1" in
+    gmail) token=$CLAUDE_TOKEN_GMAIL ;;
+    highpass) token=$CLAUDE_TOKEN_HIGHPASS ;;
+    *) echo "usage: claude-account gmail|highpass" >&2; return 1 ;;
+  esac
+  jq --arg token "$token" '.env.CLAUDE_CODE_OAUTH_TOKEN = $token' ~/.claude/settings.json > ~/.claude/settings.json.tmp || return 1
+  chmod 600 ~/.claude/settings.json.tmp
+  mv ~/.claude/settings.json.tmp ~/.claude/settings.json
+  claude respawn --all
+}
+
 function rebase-git() {
   git fetch && git rebase origin/${1:-main}
 }
