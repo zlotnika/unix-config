@@ -1,4 +1,4 @@
-;;; summary --- init
+;;; summary --- init  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;; Install via Melpa:
 ;; auto-complete
