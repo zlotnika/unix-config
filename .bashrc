@@ -155,6 +155,13 @@ function claude-account() {
   claude respawn --all
 }
 
+function claude-login-remote() {
+  echo "paste the code from the browser here:"
+  ssh "${1:?usage: claude-login-remote <host>}" 'cd ~ && claude auth login' | while IFS= read -r l; do
+    [[ $l =~ (https://[^ ]*oauth/authorize[^ ]*) ]] && open "${BASH_REMATCH[1]}" || echo "$l"
+  done
+}
+
 function rebase-git() {
   git fetch && git rebase origin/${1:-main}
 }
