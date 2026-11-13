@@ -160,7 +160,7 @@ function claude-login-remote() {
   ssh "${1:?usage: claude-login-remote <host>}" 'cd ~ && claude auth login' | while IFS= read -r l; do
     [[ $l =~ (https://[^ ]*oauth/authorize[^ ]*) ]] && open "${BASH_REMATCH[1]}" || echo "$l"
   done
-  ssh "$1" 'claude respawn --all'
+  ssh "$1" 'claude daemon stop --any'
 }
 
 function rebase-git() {
